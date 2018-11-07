@@ -80,4 +80,26 @@ public class MyHelper  extends SQLiteOpenHelper{
         //return ArrayList
         return contacts;
     }
+
+
+    //علشان اعمل ابديت
+    public  Contact getContact(int id){
+        String SELECT_QUERY = "SELECT * FROM "+TABLE_NAME+" WHERE id ="+id;
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(SELECT_QUERY,null);
+
+        Contact contact = null;
+
+        if(cursor.moveToFirst()){
+
+            int contact_id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
+            String name = cursor.getString(cursor.getColumnIndex(KEY_NAME));
+            String phone = cursor.getColumnName(cursor.getColumnIndex(KEY_PHONE));
+                //contact object
+                contact = new Contact(id,name,phone);
+
+        }
+        return contact;
+    }
 }
