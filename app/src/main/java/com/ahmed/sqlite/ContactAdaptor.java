@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class PersonAdaptor extends ArrayAdapter<Contact> {
-    public PersonAdaptor(@NonNull Context context, @NonNull ArrayList<Contact> objects) {
+public class ContactAdaptor extends ArrayAdapter<Contact> {
+    public ContactAdaptor(@NonNull Context context, @NonNull ArrayList<Contact> objects) {
         super(context, 0, objects);
     }
 

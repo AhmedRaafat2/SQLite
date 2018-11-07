@@ -12,9 +12,10 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
-    PersonAdaptor adaptor;
+    ContactAdaptor adaptor;
     ArrayList<Contact> items;
     Button addNewContact;
+    MyHelper myHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +23,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = findViewById(R.id.list);
+
+        /*
         items = new ArrayList<>();
         items.add(new Contact("Ali","012012012"));
 
-         adaptor = new PersonAdaptor(this,items);
+         adaptor = new ContactAdaptor(this,items);
          listView.setAdapter(adaptor);
-
+*/
          addNewContact = findViewById(R.id.addNewContact);
 
          addNewContact.setOnClickListener(new View.OnClickListener() {
@@ -38,12 +41,33 @@ public class MainActivity extends AppCompatActivity {
              }
          });
 
-         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-             @Override
-             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                 Intent intent = new Intent(MainActivity.this,UpdateActivity.class);
-                 startActivity(intent);
-             }
-         });
+
+
+        /*
+         //
+        myHelper = new MyHelper(this);
+        ArrayList<Contact> contacts = myHelper.getAllContacts();
+         //
+        ContactAdaptor adaptor = new ContactAdaptor(this,contacts);
+        listView.setAdapter(adaptor);
+*/
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this,UpdateActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        myHelper = new MyHelper(this);
+        ArrayList<Contact> contacts = myHelper.getAllContacts();
+        //
+        ContactAdaptor adaptor = new ContactAdaptor(this,contacts);
+        listView.setAdapter(adaptor);
     }
 }
