@@ -44,6 +44,7 @@ public class UpdateActivity extends AppCompatActivity {
 
     }
     private void showAlert(){
+        //Making Alert Dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirmation")
                 .setMessage("Are you sure");
@@ -58,6 +59,7 @@ public class UpdateActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
         alertDialog = builder.create();
         alertDialog.show();
 

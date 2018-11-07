@@ -11,10 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class PersonAdaptor extends ArrayAdapter<Person> {
-    public PersonAdaptor(@NonNull Context context, @NonNull ArrayList<Person> objects) {
+public class PersonAdaptor extends ArrayAdapter<Contact> {
+    public PersonAdaptor(@NonNull Context context, @NonNull ArrayList<Contact> objects) {
         super(context, 0, objects);
     }
 
@@ -27,10 +26,10 @@ public class PersonAdaptor extends ArrayAdapter<Person> {
         TextView phone = convertView.findViewById(R.id.numberTextView);
         ImageView personImage = convertView.findViewById(R.id.imagePerson);
 
-        Person person = getItem(position);
-        name.setText(person.getName());
-        phone.setText(person.getPhoneNumber());
-        personImage.setImageResource(person.getImageID());
+        Contact contact = getItem(position);
+        name.setText(contact.getName());
+        phone.setText(contact.getPhoneNumber());
+        personImage.setImageResource(contact.getImageID());
 
         return convertView;
     }

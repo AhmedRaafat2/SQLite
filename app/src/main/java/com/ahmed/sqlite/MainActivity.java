@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     ListView listView;
     PersonAdaptor adaptor;
-    ArrayList<Person> items;
+    ArrayList<Contact> items;
     Button addNewContact;
 
     @Override
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.list);
         items = new ArrayList<>();
-        items.add(new Person("Ali","012012012"));
+        items.add(new Contact("Ali","012012012"));
 
          adaptor = new PersonAdaptor(this,items);
          listView.setAdapter(adaptor);
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
          addNewContact.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                 Intent intent = new Intent(MainActivity.this,AddActivity.class);
                  startActivity(intent);
              }
          });
