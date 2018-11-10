@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Contact selected_Contact = (Contact) parent.getItemAtPosition(position);
                 Intent intent = new Intent(MainActivity.this,UpdateActivity.class);
+                intent.putExtra("id",selected_Contact.getId());
                 startActivity(intent);
             }
         });

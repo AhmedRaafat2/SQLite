@@ -6,14 +6,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class UpdateActivity extends AppCompatActivity {
 
-    TextView contact_Name_Update, phone_Number_Update;
+    EditText contact_Name_Update, phone_Number_Update;
     Button updateContact;
     AlertDialog alertDialog;
+    int id;
+    MyHelper myHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,23 @@ public class UpdateActivity extends AppCompatActivity {
         contact_Name_Update = findViewById(R.id.contact_name_update);
         phone_Number_Update = findViewById(R.id.contact_phone_update);
         updateContact = findViewById(R.id.updateContact);
+
+        //For update activity be filled with contact selected data
+        id = getIntent().getIntExtra("id",0);
+        myHelper = new MyHelper(this);
+        final Contact contact = myHelper.getContact(id);
+        contact_Name_Update.setText(contact.getName());
+        phone_Number_Update.setText(contact.getPhoneNumber());
+
+        updateContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = contact_Name_Update.getText().toString();
+                String phone = phone_Number_Update.getText().toString();
+                Contact newContact = new Contact(id,name,phone);
+
+            }
+        });
 
 
     }
@@ -51,6 +72,8 @@ public class UpdateActivity extends AppCompatActivity {
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                myHelper.deleteContact(id);
+                finish();
 
             }
         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -64,6 +87,8 @@ public class UpdateActivity extends AppCompatActivity {
         alertDialog.show();
 
     }
+
+
 
 }
 

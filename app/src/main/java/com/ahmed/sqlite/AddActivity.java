@@ -34,6 +34,7 @@ public class AddActivity extends AppCompatActivity {
 
                 myHelper = new MyHelper(AddActivity.this);
                 myHelper.addContact(contact);
+                finish();
             }
         });
     }
